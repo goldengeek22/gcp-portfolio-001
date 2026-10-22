@@ -140,5 +140,15 @@ I ran everything in a dedicated project with a **$10 budget alert**. Total spend
 ---
 
 ## About me
-
-ONE OR TWO SENTENCES: your background, the role you're targeting, and what you enjoyed most building this.
+ 
+I'm a **senior software engineer** and a certified **Project Management Professional (PMP)**, moving into **ML Solutions Architect** and **Cloud Architect** roles.
+ 
+I built this portfolio the way I'd run a real engagement. I scoped each project around one business problem, chose services by trade-off rather than habit, put a budget and guardrails in place before writing any code, and documented every decision so someone else could operate it. My engineering background lets me go hands-on from the container to the model endpoint. PMP training means I also think about scope, risk, cost and stakeholders.
+ 
+**What I bring to a team**
+ 
+- **End-to-end solution design:** from business requirements to architecture, security model, deployment pipeline and run-book.
+- **ML and GenAI on Google Cloud:** BigQuery ML, Vertex AI model registry and serving, and Gemini applications with evaluation and cost tracking.
+- **Production thinking:** least-privilege IAM, keyless CI/CD, observability with SLOs, and infrastructure as code.
+- **Delivery leadership:** planning, risk management, and clear communication between engineering teams and business stakeholders.
+**Open to:** ML Solutions Architect · Cloud Architect · AI/ML Engineering Lead roles. Let's talk: [LinkedIn](https://linkedin.com/in/alexandre-amevor-2954a6240) · programmer.amevoralexandre@gmail.com
