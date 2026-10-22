@@ -1,0 +1,90 @@
+# ---------- Secrets & Credentials ----------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*-key.json
+*_key.json
+key.json
+credentials*.json
+service-account*.json
+sa-*.json
+application_default_credentials.json
+.streamlit/secrets.toml
+
+# ---------- Terraform ----------
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+*.tfplan
+tfplan
+*.tfvars
+*.tfvars.json
+!*.tfvars.example
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+# Keep .terraform.lock.hcl committed: it pins provider versions
+
+# ---------- Python ----------
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+.python-version
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+.ipynb_checkpoints/
+ 
+# ---------- ML artifacts & data ----------
+# Model files live in Cloud Storage / Model Registry, not Git
+*.joblib
+*.pkl
+*.h5
+*.onnx
+07-vertex-endpoint/artifacts/*
+!07-vertex-endpoint/artifacts/metrics.json
+# Test PDFs may be copyrighted or private
+08-genai-doc-qa/*.pdf
+*.parquet
+*.csv.gz
+ 
+# ---------- Kubernetes ----------
+kubeconfig
+*.kubeconfig
+# Rendered manifests with real image URIs or secrets
+04-gke/k8s/rendered/
+ 
+# ---------- Temporary / generated ----------
+/tmp/
+*.tmp
+*.log
+!docs/**/*.log
+nohup.out
+ 
+# ---------- Editors & OS ----------
+.vscode/
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+ 
