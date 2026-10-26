@@ -10,7 +10,7 @@ on:
 env:
   PROJECT_ID: ${{ vars.GCP_PROJECT_ID }}
   REGION: ${{ vars.GCP_REGION }}
-  IMAGE: ${{ vars.GCP_REGION }}-docker.pkg.dev/${{ vars.GCP_PROJECT_ID }}/portfolio/tasks-api
+  IMAGE: ${{ vars.GCP_REGION }}-docker.pkg.dev/${{ vars.GCP_PROJECT_ID }}/portfolio-001/tasks-api
 
 jobs:
   test:
@@ -57,4 +57,3 @@ jobs:
         run: |
           URL=$(gcloud run services describe tasks-api --region=$REGION --format='value(status.url)')
           curl --fail --retry 5 --retry-delay 3 "$URL/health"
-          
