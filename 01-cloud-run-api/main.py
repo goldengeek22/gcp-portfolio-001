@@ -1,7 +1,7 @@
 import hashlib
 import json
 import os
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from fastapi import FastAPI, Header, HTTPException
 from google.cloud import firestore
@@ -42,7 +42,7 @@ def list_tasks():
 @app.post("/tasks", status_code=201)
 def create_task(task: TaskIn, x_api_key: str = Header(default="")):
     require_key(x_api_key)
-    data = task.model_dump() | {"created_at": datetime.now(timezone.utc)}
+    data = task.model_dump() | {"created_at": datetime.now(UTC)}
     _, ref = tasks.add(data)
     log("INFO", event="task_created", task_id=ref.id)   # used by project 5
     return {"id": ref.id, **data}

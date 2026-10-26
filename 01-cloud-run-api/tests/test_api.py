@@ -1,4 +1,5 @@
 from unittest.mock import MagicMock, patch
+
 from fastapi.testclient import TestClient
 
 with patch("google.cloud.firestore.Client", MagicMock()):
