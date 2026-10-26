@@ -16,7 +16,7 @@ def test_health():
 
 def test_create_requires_api_key():
     r = client.post("/tasks", json={"title": "x"})
-    assert r.status_code == 201
+    assert r.status_code == 401
 
 
 def test_hash_is_deterministic():
