@@ -195,3 +195,4 @@ gcloud secrets delete api-key
 gcloud artifacts docker images delete $IMAGE --delete-tags
 gcloud iam service-accounts delete tasks-api-sa@$PROJECT_ID.iam.gserviceaccount.com
 ```
+<!-- pr gate test -->
