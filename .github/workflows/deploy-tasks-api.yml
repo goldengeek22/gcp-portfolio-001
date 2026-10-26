@@ -1,0 +1,60 @@
+name: tasks-api CI/CD
+
+on:
+  push:
+    branches: [master]
+    paths: ["01-cloud-run-api/**", ".github/workflows/deploy-tasks-api.yml"]
+  pull_request:
+    paths: ["01-cloud-run-api/**"]
+
+env:
+  PROJECT_ID: ${{ vars.GCP_PROJECT_ID }}
+  REGION: ${{ vars.GCP_REGION }}
+  IMAGE: ${{ vars.GCP_REGION }}-docker.pkg.dev/${{ vars.GCP_PROJECT_ID }}/portfolio/tasks-api
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: 01-cloud-run-api
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt ruff pytest httpx
+      - run: ruff check .
+      - run: python -m pytest -q
+  deploy:
+    needs: test
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: google-github-actions/auth@v3
+        with:
+          workload_identity_provider: ${{ vars.WIF_PROVIDER }}
+          service_account: ${{ vars.WIF_SERVICE_ACCOUNT }}
+
+      - uses: google-github-actions/setup-gcloud@v3
+      - name: Build and push image
+        run: |
+          gcloud auth configure-docker $REGION-docker.pkg.dev --quiet
+          docker build -t $IMAGE:${{ github.sha }} 01-cloud-run-api
+          docker push $IMAGE:${{ github.sha }}
+
+      - name: Deploy to Cloud Run
+        run: |
+          gcloud run deploy tasks-api \
+            --image=$IMAGE:${{ github.sha }} \
+            --region=$REGION --quiet
+
+      - name: Smoke test
+        run: |
+          URL=$(gcloud run services describe tasks-api --region=$REGION --format='value(status.url)')
+          curl --fail --retry 5 --retry-delay 3 "$URL/health"
+          

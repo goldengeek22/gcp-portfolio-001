@@ -30,7 +30,7 @@ def require_key(key: str):
 
 @app.get("/health")
 def health():
-    return {"status": "ok", "revision": os.environ.get("K_REVISION", "local")}
+    return {"status": "ok", "revision": os.environ.get("K_REVISION", "local"), "version":2}
 
 
 @app.get("/tasks")
