@@ -171,15 +171,4 @@ Takeaways:
 - Scan the image (Artifact Analysis) before deploying, and deploy with `--no-traffic` followed by a gradual traffic shift.
 - Automatic rollback when the smoke test or an SLO burn-rate alert fails (see project 5).
 
----
-
-## Cost & cleanup
-
-Free: GitHub Actions minutes on a public repo, plus negligible Artifact Registry storage. Old images can be removed with a cleanup policy:
-
-```bash
-gcloud artifacts repositories set-cleanup-policies portfolio \
-  --location=europe-west1 --policy=cleanup-policy.json
-```
-
-The pool, provider and service account cost nothing, so there is nothing to delete until you remove the whole project.
+The pool, provider and service account cost nothing, so there is nothing to delete until the whole project is removed.
